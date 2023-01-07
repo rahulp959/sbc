@@ -81,7 +81,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="option in results | orderBy:'price'">
+                <tr ng-repeat="option in results | orderBy:['price', 'rating']">
                   <td ng-repeat="rating in ratingRange">{{ option[rating] || '' }}</td>
                   <td ng-if="setPrices">{{ option.price || '' }}</td>
                   <td>{{ option.rating || ''}}</td>
