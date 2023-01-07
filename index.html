@@ -77,12 +77,14 @@
                 <tr>
                   <th ng-repeat="rating in ratingRange"><span style="font-size: 1.5em;">{{ rating }}</span> <small style="font-weight:normal;">rated players</small></th>
                   <th ng-if="setPrices">Price</th>
+                  <th>Rating Combination</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="option in results | orderBy:'price'">
                   <td ng-repeat="rating in ratingRange">{{ option[rating] || '' }}</td>
                   <td ng-if="setPrices">{{ option.price || '' }}</td>
+                  <td>{{ option.rating || ''}}</td>
                 </tr>
               </tbody>
             </table>
@@ -159,6 +161,8 @@
                 case 'SQUAD':
                   console.log(e.data.squad);
                   var squad = _.countBy(e.data.squad);
+                  var squadRating = _.sum(e.data.squad);
+                  squad.rating = squadRating;
                   if($scope.setPrices){
                     squad.price = getPrice($scope.prices, squad);
                   }
