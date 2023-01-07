@@ -157,10 +157,12 @@
             myWorker.onmessage = function(e){
               switch (e.data.code) {
                 case 'SQUAD':
+                  console.log(e.data.squad);
                   var squad = _.countBy(e.data.squad);
                   if($scope.setPrices){
                     squad.price = getPrice($scope.prices, squad);
                   }
+                  console.log(squad);
                   $scope.results.push(squad);
                   $scope.$apply();
                   break;
